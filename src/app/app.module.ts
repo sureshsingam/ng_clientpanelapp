@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+//Angular Fire Imports
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
-
+// Component Imports
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientsComponent } from './components/clients/clients.component';
@@ -16,6 +20,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+//Service Imports
+import { ClientService } from './services/client.service'
 const appRoutes: Routes = [
   {
     path:'',
@@ -31,6 +37,14 @@ const appRoutes: Routes = [
   }
 
 ];
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyCztelh8AAwq6vt9OjfDIr4aiA3jh-xKXA",
+  authDomain: "clientpanel-625fb.firebaseapp.com",
+  databaseURL: "https://clientpanel-625fb.firebaseio.com",
+  storageBucket: "clientpanel-625fb.appspot.com",
+  messagingSenderId: "665024786793" 
+}
 
 @NgModule({
   declarations: [
@@ -49,10 +63,15 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(firebaseConfig)
 
   ],
-  providers: [],
+  providers: [
+    AngularFireAuth,
+    AngularFireDatabase,
+    ClientService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
