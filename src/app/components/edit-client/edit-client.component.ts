@@ -44,7 +44,8 @@ export class EditClientComponent implements OnInit {
           this.flashMessagesService.show("Please fill in all fields",{cssClass:'alert-danger',timeout:4000})
           this.router.navigate(['edit-client/'+this.id]);
         }
-        else{
+        else
+        {
           //update client
           this.clientService.updateClient(this.id,value);
           this.flashMessagesService.show("Client Updated",{cssClass:'alert-success',timeout:4000})
