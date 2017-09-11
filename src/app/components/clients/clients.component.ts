@@ -26,11 +26,13 @@ totalOwed:number;
   }
 
   getTotalOwed(){
-    let total = 0;
+    let total:number = 0;
 
     for(let i = 0; i < this.clients.length; i++)
     {
-      total = total + parseFloat(this.clients[i].balance);
+      console.log("clients balance: " + this.clients[i].balance)
+      console.log("total: " + total)
+      total += parseFloat(this.clients[i].balance);
     }
     this.totalOwed = total;
     console.log(this.totalOwed)
